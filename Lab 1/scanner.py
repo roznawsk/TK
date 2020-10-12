@@ -141,11 +141,11 @@ def t_newline(t):
     t.lexer.lineno += i
 
 
-t_ignore = ' \t'
+t_ignore = '    \t'
 
 
 def t_error(t):
-    print("\033[1;31;40mIllegal character '%s' at (%d,%d)" % (t.value[0], t.lineno, t.lexpos - column_offset + 1))
+    print("\033[1;31;40mIllegal character '%s' at (%d,%d)" % (t.value[0], t.lineno))
     t.lexer.skip(1)
 
 
