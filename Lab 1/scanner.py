@@ -63,7 +63,7 @@ tokens = [
              'LESS_EQUAL',
              'RANGE',
              'TRANSPOSE',
-             'COMMA',
+             'COMA',
              'SEMICOLON',
              'FLOATNUM',
              'STRING',
@@ -99,21 +99,14 @@ t_LESS = r'<'
 t_LESS_EQUAL = r'<='
 t_RANGE = r':'
 t_TRANSPOSE = r'\''
-t_COMMA = r','
+t_COMA = r','
 t_SEMICOLON = r';'
 t_STRING = r'".*"'
 
 
-# def t_ID(t):
-#     r'[a-zA-Z_]\w*'
-#     return t
-
 def t_ID(t):
     r'[a-zA-Z_]\w*'
-    if t.value in reserved.keys():
-        t.type = reserved[t.value]
-    else:
-        t.type = "ID"
+    t.type = reserved.get(t.value,'ID')
     return t
 
 
@@ -128,9 +121,6 @@ def t_INTNUM(t):
     t.value = int(t.value)
     return t
 
-# def t_newline(t):
-#     r'\n+'
-#     t.lexer.lineno += len(t.value)
 
 def t_newline(t):
     r'(\#.*\n*)|\n+'
@@ -145,7 +135,7 @@ t_ignore = '    \t'
 
 
 def t_error(t):
-    print("\033[1;31;40mIllegal character '%s' at (%d,%d)" % (t.value[0], t.lineno))
+    print("Illegal character '%s' at (%d)" % (t.value[0], t.lineno))
     t.lexer.skip(1)
 
 
