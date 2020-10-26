@@ -6,6 +6,8 @@ tokens = scanner.tokens
 precedence = (
     # to fill ...
     ("left", '+', '-'),
+    (" left ", ’*’, ’/’) ,
+
     # to fill ...
 )
 
