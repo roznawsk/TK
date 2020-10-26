@@ -102,13 +102,11 @@ def t_INTNUM(t):
 
 
 def t_newline(t):
-    r'(\#.*\n*)|\n+'
-    i = 0
-    for c in t.value:
-        if c == '\n':
-            i = i + 1
-    t.lexer.lineno += i
+    r'\n+'
+    t.lexer.lineno += len(t.value)
 
+def t_comment(t):
+    r'\#.*'
 
 t_ignore = '    \t'
 
