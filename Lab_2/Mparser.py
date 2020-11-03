@@ -5,7 +5,7 @@ import scanner
 import ply.yacc as yacc
 
 tokens = scanner.tokens
-literals = scanner.reserved
+literals = "+-*/=()[]{}:',;<>"
 
 
 precedence = (
@@ -22,17 +22,26 @@ precedence = (
 )
 
 
-def p_error(p):
-    # using lexer object for convenient global state store
-    p.lexer.encountered_error = True
-    print("Syntax error at line {0}: LexToken({1}, '{2}')"
-          .format(p.lineno, p.type, p.value))
-    print("Unexpected end of input")
+# def p_error(p):
+#     # using lexer object for convenient global state store
+#     p.lexer.encountered_error = True
+#     print("Syntax error at line {0}: LexToken({1}, '{2}')"
+#           .format(p.lineno, p.type, p.value))
+#     print("Unexpected end of input")
 
+def p_error(p):
+    if p:
+        line = p.lexer.lineno if hasattr(p.lexer, 'lineno') else p.lexer.lexer.lineno
+        value = p.value
+    else:
+        line = 'last'
+        value = ''
+    print('#' * 40 + '\nERROR\nIllegal symbol {} at line {}\n'.format(value, line) + '#' * 40)
 
 # -------------------------
 # Main productions
 # -------------------------
+
 
 def p_instructions(p):
     """instructions : instruction
