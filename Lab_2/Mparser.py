@@ -5,13 +5,13 @@ import scanner
 import ply.yacc as yacc
 
 tokens = scanner.tokens
-literals = "+-*/=()[]{}:',;<>"
+literals = scanner.literals
 
 
 precedence = (
     ('nonassoc', 'IF'),
     ('nonassoc', 'ELSE'),
-    ('right', '=', 'PLUSASSIGN', 'MINUSASSIGN', 'TIMESASSIGN', 'DIVIDEASSIGN'),
+    ('left', 'EQUAL', 'PLUSASSIGN', 'MINUSASSIGN', 'TIMESASSIGN', 'DIVIDEASSIGN'),
     ('nonassoc', '<', '>', 'EQUAL', 'NOTEQUAL', 'GREATERTHANEQ', 'LESSTHANEQ'),
     ('left', '+', '-'),
     ('left', 'DOTPLUS', 'DOTMINUS'),
@@ -230,7 +230,7 @@ def p_numeric_expression(p):
                           | matrix
                           | unary_op
                           | fun
-                          | '(' numeric_expression ')'"""
+          f                | '(' numeric_expression ')'"""
 
 
 def p_bin_numeric_expression(p):
@@ -258,4 +258,4 @@ def p_comparison_expression(p):
            | '(' comparison_expression ')'"""
 
 
-parser = yacc.yacc()
+parser = yacc.yacc(debug=True)

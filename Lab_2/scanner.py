@@ -1,5 +1,7 @@
 import ply.lex as lex
 
+literals = "+-*/=()[]{}:',;<>"
+
 reserved = {
     'if': 'IF',
     'else': 'ELSE',
