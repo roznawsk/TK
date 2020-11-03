@@ -1,5 +1,7 @@
 import ply.lex as lex
 
+literals = "+-*/=()[]{}:',;<>"
+
 reserved = {
     'if': 'IF',
     'else': 'ELSE',
@@ -69,7 +71,7 @@ t_GREATERTHAN = r'>'
 t_LESSTHANEQ = r'<='
 t_GREATERTHANEQ = r'>='
 t_NOTEQUAL = r'!='
-t_EQUAL = r'='
+t_EQUAL = r'=='
 t_LRNDBRACKET = r'\('
 t_RRNDBRACKET = r'\)'
 t_LSQBRACKET = r'\['
@@ -116,4 +118,4 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-lexer = lex.lex()
+lexer = lex.lex(debug=True)

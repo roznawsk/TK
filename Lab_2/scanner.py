@@ -17,71 +17,35 @@ reserved = {
 }
 
 tokens = [
-             'PLUS',
-    'MINUS',
-    'TIMES',
-    'DIVIDE',
     'DOTPLUS',
     'DOTMINUS',
     'DOTTIMES',
     'DOTDIVIDE',
-    'ASSIGN',
     'PLUSASSIGN',
     'MINUSASSIGN',
     'TIMESASSIGN',
     'DIVIDEASSIGN',
-    'LESSTHAN',
-    'GREATERTHAN',
     'LESSTHANEQ',
     'GREATERTHANEQ',
     'NOTEQUAL',
     'EQUAL',
-    'LRNDBRACKET',
-    'RRNDBRACKET',
-    'LSQBRACKET',
-    'RSQBRACKET',
-    'LCURBRACKET',
-    'RCURBRACKET',
-    'RANGE',
-    'TRANSPOSE',
-    'COMMA',
-    'SEMICOLON',
     'ID',
     'INTNUM',
     'FLOATNUM',
-    'STRING',
-         ] + list(reserved.values())
+    'STRING' ] + list(reserved.values())
 
-
-t_PLUS = r'\+'
-t_MINUS = r'\-'
-t_DIVIDE = r'\/'
-t_TIMES = r'\*'
 t_DOTPLUS = r'\.\+'
-t_DOTMINUS = r'\-\.'
-t_DOTTIMES = r'\*\.'
-t_DOTDIVIDE = r'\/\.'
-t_ASSIGN = r'='
+t_DOTMINUS = r'\.\-'
+t_DOTTIMES = r'\.\*'
+t_DOTDIVIDE = r'\.\/'
 t_PLUSASSIGN = r'\+='
 t_MINUSASSIGN = r'\-='
 t_TIMESASSIGN = r'\*='
 t_DIVIDEASSIGN = r'\/='
-t_LESSTHAN = r'<'
-t_GREATERTHAN = r'>'
 t_LESSTHANEQ = r'<='
 t_GREATERTHANEQ = r'>='
 t_NOTEQUAL = r'!='
-t_EQUAL = r'='
-t_LRNDBRACKET = r'\('
-t_RRNDBRACKET = r'\)'
-t_LSQBRACKET = r'\['
-t_RSQBRACKET = r'\]'
-t_LCURBRACKET = r'{'
-t_RCURBRACKET = r'}'
-t_RANGE = r':'
-t_TRANSPOSE = r'\''
-t_COMMA = r'.'
-t_SEMICOLON = r';'
+t_EQUAL = r'=='
 t_STRING = r'".*"'
 
 

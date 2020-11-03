@@ -11,7 +11,7 @@ literals = scanner.literals
 precedence = (
     ('nonassoc', 'IF'),
     ('nonassoc', 'ELSE'),
-    ('left', 'EQUAL', 'PLUSASSIGN', 'MINUSASSIGN', 'TIMESASSIGN', 'DIVIDEASSIGN'),
+    ('right', '=', 'PLUSASSIGN', 'MINUSASSIGN', 'TIMESASSIGN', 'DIVIDEASSIGN'),
     ('nonassoc', '<', '>', 'EQUAL', 'NOTEQUAL', 'GREATERTHANEQ', 'LESSTHANEQ'),
     ('left', '+', '-'),
     ('left', 'DOTPLUS', 'DOTMINUS'),
@@ -230,7 +230,7 @@ def p_numeric_expression(p):
                           | matrix
                           | unary_op
                           | fun
-          f                | '(' numeric_expression ')'"""
+                          | '(' numeric_expression ')'"""
 
 
 def p_bin_numeric_expression(p):
