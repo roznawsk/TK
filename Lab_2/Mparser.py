@@ -22,10 +22,10 @@ precedence = (
 
 
 def p_error(p):
-    # using lexer object for convenient global state store
-    p.lexer.encountered_error = True
-    print("Syntax error at line {0}: LexToken({1}, '{2}')"
-          .format(p.lineno, p.type, p.value))
+    if p:
+        print("Syntax error at line {0}: LexToken({1}, '{2}')".format(p.lineno, p.type, p.value))
+    else:
+        print("Unexpected end of input")
 
 # -------------------------
 # Main productions
