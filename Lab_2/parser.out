@@ -1,0 +1,238 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ADD
+    ADDASSIGN
+    ASSIGN
+    COMMA
+    COMMENT
+    DIV
+    DIVASSIGN
+    DOTADD
+    DOTDIV
+    DOTMUL
+    DOTSUB
+    EQUALITY
+    GREATER
+    GREATER_EQUAL
+    INEQUALITY
+    LESS
+    LESS_EQUAL
+    LPAREN
+    LPARENCURLY
+    LPARENSQUARE
+    MATRIX
+    MUL
+    MULASSIGN
+    RANGE
+    REF
+    RPAREN
+    RPARENCURLY
+    RPARENSQUARE
+    SEMICOLON
+    SUB
+    SUBASSIGN
+    TRANSPOSE
+
+Grammar
+
+Rule 0     S' -> instructions
+Rule 1     instructions -> instruction
+Rule 2     instructions -> instruction instructions
+Rule 3     instruction -> block
+Rule 4     instruction -> conditional
+Rule 5     instruction -> loop
+Rule 6     instruction -> statement ;
+Rule 7     instruction -> error ;
+Rule 8     statement -> assignment
+Rule 9     statement -> flow_keyword
+Rule 10    statement -> return
+Rule 11    statement -> print
+Rule 12    flow_keyword -> BREAK
+Rule 13    flow_keyword -> CONTINUE
+Rule 14    expression -> comparison_expression
+Rule 15    expression -> numeric_expression
+Rule 16    block -> { instructions }
+Rule 17    block -> { error }
+Rule 18    print -> PRINT print_body
+Rule 19    print_body -> string
+Rule 20    print_body -> expression
+Rule 21    print_body -> string , print_body
+Rule 22    print_body -> expression , print_body
+Rule 23    return -> RETURN expression
+Rule 24    return -> RETURN
+Rule 25    string -> STRING
+Rule 26    vector -> [ vector_body ]
+Rule 27    vector -> [ ]
+Rule 28    vector_body -> numeric_expression
+Rule 29    vector_body -> vector_body , numeric_expression
+Rule 30    matrix -> [ matrix_body ]
+Rule 31    matrix -> [ ]
+Rule 32    matrix_body -> vector
+Rule 33    matrix_body -> matrix_body , vector
+Rule 34    array_range -> var [ expression , expression ]
+Rule 35    fun -> fun_name ( numeric_expression )
+Rule 36    fun -> fun_name ( error )
+Rule 37    fun_name -> ZEROS
+Rule 38    fun_name -> ONES
+Rule 39    fun_name -> EYE
+Rule 40    loop -> while
+Rule 41    loop -> for
+Rule 42    while -> WHILE ( expression ) instruction
+Rule 43    for -> FOR ID = numeric_expression : numeric_expression instruction
+Rule 44    conditional -> IF ( expression ) instruction
+Rule 45    conditional -> IF ( expression ) instruction ELSE instruction
+Rule 46    assignment_lhs -> var
+Rule 47    assignment_lhs -> array_range
+Rule 48    assignment -> assignment_lhs assignment_operator expression
+Rule 49    assignment -> assignment_lhs = string
+Rule 50    assignment_operator -> =
+Rule 51    assignment_operator -> PLUSASSIGN
+Rule 52    assignment_operator -> MINUSASSIGN
+Rule 53    assignment_operator -> TIMESASSIGN
+Rule 54    assignment_operator -> DIVIDEASSIGN
+Rule 55    var -> ID
+Rule 56    var -> var [ numeric_expression ]
+Rule 57    num -> INTNUM
+Rule 58    num -> FLOATNUM
+Rule 59    num -> var
+Rule 60    unary_op -> negation
+Rule 61    unary_op -> transposition
+Rule 62    negation -> - numeric_expression
+Rule 63    transposition -> numeric_expression '
+Rule 64    numeric_expression -> num
+Rule 65    numeric_expression -> matrix
+Rule 66    numeric_expression -> unary_op
+Rule 67    numeric_expression -> fun
+Rule 68    numeric_expression -> ( numeric_expression )
+Rule 69    numeric_expression -> numeric_expression + numeric_expression
+Rule 70    numeric_expression -> numeric_expression - numeric_expression
+Rule 71    numeric_expression -> numeric_expression * numeric_expression
+Rule 72    numeric_expression -> numeric_expression / numeric_expression
+Rule 73    numeric_expression -> numeric_expression DOTPLUS numeric_expression
+Rule 74    numeric_expression -> numeric_expression DOTMINUS numeric_expression
+Rule 75    numeric_expression -> numeric_expression DOTTIMES numeric_expression
+Rule 76    numeric_expression -> numeric_expression DOTDIVIDE numeric_expression
+Rule 77    comparison_expression -> numeric_expression < numeric_expression
+Rule 78    comparison_expression -> numeric_expression > numeric_expression
+Rule 79    comparison_expression -> numeric_expression EQUAL numeric_expression
+Rule 80    comparison_expression -> numeric_expression NOTEQUAL numeric_expression
+Rule 81    comparison_expression -> numeric_expression GREATERTHANEQ numeric_expression
+Rule 82    comparison_expression -> numeric_expression LESSTHANEQ numeric_expression
+Rule 83    comparison_expression -> ( comparison_expression )
+
+Terminals, with rules where they appear
+
+'                    : 63
+(                    : 35 36 42 44 45 68 83
+)                    : 35 36 42 44 45 68 83
+*                    : 71
++                    : 69
+,                    : 21 22 29 33 34
+-                    : 62 70
+/                    : 72
+:                    : 43
+;                    : 6 7
+<                    : 77
+=                    : 43 49 50
+>                    : 78
+ADD                  : 
+ADDASSIGN            : 
+ASSIGN               : 
+BREAK                : 12
+COMMA                : 
+COMMENT              : 
+CONTINUE             : 13
+DIV                  : 
+DIVASSIGN            : 
+DOTADD               : 
+DOTDIV               : 
+DOTMUL               : 
+DOTSUB               : 
+ELSE                 : 45
+EQUALITY             : 
+EYE                  : 39
+FLOATNUM             : 58
+FOR                  : 43
+GREATER              : 
+GREATER_EQUAL        : 
+ID                   : 43 55
+IF                   : 44 45
+INEQUALITY           : 
+INTNUM               : 57
+LESS                 : 
+LESS_EQUAL           : 
+LPAREN               : 
+LPARENCURLY          : 
+LPARENSQUARE         : 
+MATRIX               : 
+MUL                  : 
+MULASSIGN            : 
+ONES                 : 38
+PRINT                : 18
+RANGE                : 
+REF                  : 
+RETURN               : 23 24
+RPAREN               : 
+RPARENCURLY          : 
+RPARENSQUARE         : 
+SEMICOLON            : 
+STRING               : 25
+SUB                  : 
+SUBASSIGN            : 
+TRANSPOSE            : 
+WHILE                : 42
+ZEROS                : 37
+[                    : 26 27 30 31 34 56
+]                    : 26 27 30 31 34 56
+error                : 7 17 36
+{                    : 16 17
+}                    : 16 17
+
+Nonterminals, with rules where they appear
+
+DIVIDEASSIGN         : 54
+DOTDIVIDE            : 76
+DOTMINUS             : 74
+DOTPLUS              : 73
+DOTTIMES             : 75
+EQUAL                : 79
+GREATERTHANEQ        : 81
+LESSTHANEQ           : 82
+MINUSASSIGN          : 52
+NOTEQUAL             : 80
+PLUSASSIGN           : 51
+TIMESASSIGN          : 53
+array_range          : 47
+assignment           : 8
+assignment_lhs       : 48 49
+assignment_operator  : 48
+block                : 3
+comparison_expression : 14 83
+conditional          : 4
+expression           : 20 22 23 34 34 42 44 45 48
+flow_keyword         : 9
+for                  : 41
+fun                  : 67
+fun_name             : 35 36
+instruction          : 1 2 42 43 44 45 45
+instructions         : 2 16 0
+loop                 : 5
+matrix               : 65
+matrix_body          : 30 33
+negation             : 60
+num                  : 64
+numeric_expression   : 15 28 29 35 43 43 56 62 63 68 69 69 70 70 71 71 72 72 73 73 74 74 75 75 76 76 77 77 78 78 79 79 80 80 81 81 82 82
+print                : 11
+print_body           : 18 21 22
+return               : 10
+statement            : 6
+string               : 19 21 49
+transposition        : 61
+unary_op             : 66
+var                  : 34 46 56 59
+vector               : 32 33
+vector_body          : 26 29
+while                : 40
+
