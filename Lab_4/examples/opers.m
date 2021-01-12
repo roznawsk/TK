@@ -1,5 +1,5 @@
 x = 0;
-y = zeros(5);
+y = "random";
 z = x + y;
 
 x = eye(5);
